@@ -32,8 +32,7 @@ setTimeout(clearHomePage, 500)
 
 function clearHomePage() {
     let isHomePage = document.title.startsWith('Wykop.pl - newsy, aktualn');
-    let isEnabled = localStorage.getItem('cleanWykop') === 'true';
-    if (isHomePage && isEnabled) {
+    if (isHomePage) {
         let mainGridSelector = 'div.grid.m-reset-float > div.grid-main '
         ignoreError(() => document.querySelector(mainGridSelector + '> div.nav').remove())
         ignoreError(() => document.getElementById('autopromotion').remove())

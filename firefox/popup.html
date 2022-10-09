@@ -4,36 +4,17 @@
         <meta name="viewport" content="width=device-width">
         <title>Wykop Bez Głównej!</title>
         <style>
-            #clean-wykop-enabled:hover {
-                cursor: pointer;
+            #main-popup-message {
+                font-size: 1.4em;
+                text-align: center;
+                font-weight: 500;
+                margin: 20px 10px;
             }
         </style>
     </head>
     <body>
-    <label>
-        <!-- <img src="icons/icon_color.png" id="btn-clean-wykop" onclick="toggleMode()"/> -->
-        Czyszczenie strony głównej
-        <input type="checkbox" id="clean-wykop-enabled" onchange="toggleMode()">
+    <label id="main-popup-message">
+        Nawet o tym nie myśl. Tej wtyczki nie da się wyłączyć.
     </label>
-
-
-    <script>
-        init().catch(e => console.error(e))
-
-        function toggleMode() {
-            setMode(document.getElementById('clean-wykop-enabled').checked)
-        }
-
-        function setMode(enabled) {
-            localStorage.setItem('cleanWykop', enabled ? 'true' : 'false')
-            document.getElementById('clean-wykop-enabled').checked = enabled
-            //input.setAttribute('src', 'icons/' + (enabled ? 'icon_color.png' : 'icon_gray.png'))
-            console.debug(enabled ? 'enabled' : 'disabled')
-        }
-
-        async function init() {
-            setMode(localStorage.getItem('cleanWykop') === 'true')
-        }
-    </script>
     </body>
 </html>

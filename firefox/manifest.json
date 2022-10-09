@@ -3,6 +3,7 @@
   "manifest_version": 2,
   "name": "Wykop Bez G\u0142\u00f3wnej",
   "version": "1.0",
+  "author": "Wojciech Prusik",
 
   "description": "Usuwa wykopaliska i reklamy ze strony głównej, dzięki czemu możesz zachować zdrowie psychiczne i widzieć tylko treści wyselekcjonowane przez siebie.",
 
@@ -22,7 +23,7 @@
     "default_icon": {
       "48": "icons/icon_color.ico"
     },
-    "default_title": "Wyczyść wypok",
+    "default_title": "Wykop bez głównej",
     "default_popup": "popup.html"
   },
 
