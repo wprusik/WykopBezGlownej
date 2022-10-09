@@ -1,0 +1,32 @@
+{
+
+  "manifest_version": 2,
+  "name": "Wykop Bez G\u0142\u00f3wnej",
+  "version": "1.0",
+
+  "description": "Usuwa wykopaliska i reklamy ze strony głównej, dzięki czemu możesz zachować zdrowie psychiczne i widzieć tylko treści wyselekcjonowane przez siebie.",
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.wykop.pl/*"],
+      "js": ["wykop.js"]
+    }
+  ],
+
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": {
+      "48": "icons/icon_color.ico"
+    },
+    "default_title": "Wyczyść wypok",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": [
+    "storage"
+  ]
+}

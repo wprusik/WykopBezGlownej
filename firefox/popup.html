@@ -1,0 +1,39 @@
+<html lang="html">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Wykop Bez Głównej!</title>
+        <style>
+            #clean-wykop-enabled:hover {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+    <label>
+        <!-- <img src="icons/icon_color.png" id="btn-clean-wykop" onclick="toggleMode()"/> -->
+        Czyszczenie strony głównej
+        <input type="checkbox" id="clean-wykop-enabled" onchange="toggleMode()">
+    </label>
+
+
+    <script>
+        init().catch(e => console.error(e))
+
+        function toggleMode() {
+            setMode(document.getElementById('clean-wykop-enabled').checked)
+        }
+
+        function setMode(enabled) {
+            localStorage.setItem('cleanWykop', enabled ? 'true' : 'false')
+            document.getElementById('clean-wykop-enabled').checked = enabled
+            //input.setAttribute('src', 'icons/' + (enabled ? 'icon_color.png' : 'icon_gray.png'))
+            console.debug(enabled ? 'enabled' : 'disabled')
+        }
+
+        async function init() {
+            setMode(localStorage.getItem('cleanWykop') === 'true')
+        }
+    </script>
+    </body>
+</html>
