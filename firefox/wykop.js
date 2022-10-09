@@ -6,7 +6,7 @@ function modifyNavEntry(key, textContent, title) {
 
 
 function removeAnnoyingTagsFromFooter() {
-    let annoyingTags = ['covid', 'covid19', 'rosja', 'ukraina', 'pis', 'wojna', 'afera', 'bekazpisu', 'bekazprawakow', 'bezkazlewakow', 'odra', 'polityka'] // todo - niech user sam definiuje te addsy
+    let annoyingTags = ['covid', 'covid19', 'rosja', 'ukraina', 'pis', 'wojna', 'afera', 'bekazpisu', 'bekazprawakow', 'bezkazlewakow', 'odra', 'polityka']
     for (let i = 0; i < annoyingTags.length; i++) {
         let footerTag = document.querySelector('#footer > .wrapper > div.width-one-third > div > a[title="' + annoyingTags[i] + '"]')
         let navTag = document.querySelector('#site > .wrapper > .nav > ul > li > a[href^="https://www.wykop.pl/tag/znaleziska/' + annoyingTags[i] + '"]')
@@ -28,7 +28,6 @@ function ignoreError(callback) {
 }
 
 window.onload = clearHomePage
-setTimeout(clearHomePage, 500)
 
 function clearHomePage() {
     let isHomePage = document.title.startsWith('Wykop.pl - newsy, aktualn');
