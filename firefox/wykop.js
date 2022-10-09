@@ -1,12 +1,32 @@
+const annoyingTags = ['covid', 'covid19', 'rosja', 'ukraina', 'pis', 'wojna', 'afera', 'bekazpisu', 'bekazprawakow', 'bezkazlewakow', 'odra', 'polityka']
+
+function ignoreError(callback) {
+    try {
+        callback.call()
+    } catch (err) {
+    }
+}
+
 function modifyNavEntry(key, textContent, title) {
     let entry = document.querySelector('#nav > .wrapper > ul.mainnav > li > a[href^="https://www.wykop.pl/' + key + '"]');
     entry.textContent = textContent;
     entry.title = title;
 }
 
+function removeAnnoyingTagsFromHeader() {
+    for (let i = 0; i < annoyingTags.length; i++) {
+        let headerTag = document.querySelector('div[id="site"] > div[class^="wrapper"] > div[class^="nav"] > ul')
+        Array.from(headerTag.children).forEach(el => {
+            ignoreError(() => {
+                if (el.firstChild.firstChild.textContent.toLowerCase() === annoyingTags[i]) {
+                    el.remove()
+                }
+            })
+        })
+    }
+}
 
 function removeAnnoyingTagsFromFooter() {
-    let annoyingTags = ['covid', 'covid19', 'rosja', 'ukraina', 'pis', 'wojna', 'afera', 'bekazpisu', 'bekazprawakow', 'bezkazlewakow', 'odra', 'polityka']
     for (let i = 0; i < annoyingTags.length; i++) {
         let footerTag = document.querySelector('#footer > .wrapper > div.width-one-third > div > a[title="' + annoyingTags[i] + '"]')
         let navTag = document.querySelector('#site > .wrapper > .nav > ul > li > a[href^="https://www.wykop.pl/tag/znaleziska/' + annoyingTags[i] + '"]')
@@ -20,18 +40,15 @@ function removeAnnoyingTagsFromFooter() {
     }
 }
 
-function ignoreError(callback) {
-    try {
-        callback.call()
-    } catch (err) {
-    }
-}
-
-window.onload = clearHomePage
+clearHomePage()
 
 function clearHomePage() {
     let isHomePage = document.title.startsWith('Wykop.pl - newsy, aktualn');
-    if (isHomePage) {
+    let isExcavation = document.title === 'Wykopalisko - Wykop.pl'
+    if (isHomePage || isExcavation) {
+        ignoreError(() => removeAnnoyingTagsFromHeader())
+        ignoreError(() => removeAnnoyingTagsFromFooter())
+
         let mainGridSelector = 'div.grid.m-reset-float > div.grid-main '
         ignoreError(() => document.querySelector(mainGridSelector + '> div.nav').remove())
         ignoreError(() => document.getElementById('autopromotion').remove())
@@ -54,8 +71,6 @@ function clearHomePage() {
         modifyNavEntry('hity', 'Hity', 'takie ciastka')
         modifyNavEntry('mikroblog', 'Mirkoblog', 'nie wymaga wyjaśnienia')
         modifyNavEntry('moj', 'Mój Wypok', 'treści obserwowanych Mirasów')
-
-        ignoreError(() => removeAnnoyingTagsFromFooter())
 
         setInterval(() => {
             let lenny = document.getElementById('lennyface-przodowy')
